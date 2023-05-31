@@ -1,0 +1,94 @@
+@charset "utf-8";
+*{margin: 0; padding: 0; box-sizing: border-box; color: #333;}
+ul, li{list-style: none;}
+a{text-decoration: none;}
+
+header{
+    position: relative;
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+header > ul{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+}
+
+header > ul > li{
+    position: relative;
+    width: 130px;
+    background: lightpink;
+    text-align: center;
+}
+
+header > ul > li > a{
+    position: relative;
+    display: block;
+    width: 100%;
+    /* width값을 조정해서 가상선택자에서 깔릴 border-bottom의 넓이를 달리 할 수 있다. */
+    height: 50px;
+    padding: 0 3px;
+    font: bold 17px/50px "arial";
+}
+
+header > ul > li > a::before{
+    content: "";
+    display: block;
+    width: 100%;
+    /* border-bottom 혹은 height 값으로 설정해도 된다. */
+    border-bottom: 3px solid #000;
+    /* 반드시 가상선택자로 값을 설정해 줄것 */
+    position: absolute;
+    bottom: 10px;
+    /* border-bottom의 높이값 설정 */
+    left: 50%;
+    transform: translateX(-50%) scaleX(0%);
+    transition: 0.3s;
+}
+
+header > ul > li > a:hover:before{
+    transform: translateX(-50%) scaleX(100%);
+}
+
+.sub{
+    width: 100%;
+    height: 180px;
+    position: absolute;
+    top: 50px;
+    /* header >ul > li > a 의 높이 값이 50px이라서 50px만큼 떨어트려 준다. */
+    padding: 10px 0;
+}
+
+.sub > li{
+    width: 100%;
+}
+
+.sub > li > a {
+    position: relative;
+    display: inline-block;
+    /* 형광펜 효과가 자신의 크기 만큼만 그어졌으면 좋겠어서 inline-block로 값을 변경해준다. */
+    height: 30px;
+    font: bold 15px/30px "맑은고딕";
+}
+
+.sub > li > a::before{
+    content: "";
+    display: block;
+    clear: both;
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+    border-bottom: 16px solid rgb(76, 232, 29);
+    transition: 0.4s;
+    width: 0%;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.sub > li > a:hover::before{
+    width: 100%;
+}
